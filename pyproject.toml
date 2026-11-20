@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "poem-rl-outcomes"
+version = "1.0.0"
+description = "PoEM: predict the outcome of RL on a new reward by composing policies already trained with RL"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Kimia Hamidieh"}, {name = "Giannis Daras"}, {name = "Antonio Torralba"}]
+# scipy 1.17.1 needs Python 3.11; Python 3.12's sum() changes the last bits of the combined rewards
+requires-python = ">=3.11,<3.12"
+dependencies = ["torch==2.9.0", "vllm==0.12.0", "transformers==4.57.6", "tokenizers==0.22.2",
+                "huggingface_hub==0.36.2", "safetensors==0.7.0", "accelerate==1.13.0", "peft==0.19.1",
+                "numpy==2.2.6", "scipy==1.17.1", "nltk==3.9.4",
+                "sentencepiece==0.2.1", "protobuf==5.29.6"]   # the last two: tokenizers of four RM-Div reward models
+
+[project.optional-dependencies]
+data = ["datasets==4.8.5"]   # the recipe's prompt sets
+
+[project.urls]
+Repository = "https://github.com/kimiah/poem-rl-outcomes"
+Paper = "https://arxiv.org/abs/2609.30226"
+
+[tool.setuptools]
+packages = ["poem"]
